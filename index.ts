@@ -1,13 +1,13 @@
-import express from 'express'
+import express from 'express';
 import * as mysql from 'promise-mysql';
 
-const app: express.Express = express()
-app.use(express.json())
-app.use(express.urlencoded({ extended: true }))
+const app: express.Express = express();
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 app.listen(3000, () => {
     console.log("Start on port 3000.")
-})
+});
 
 const connection = async () => {
   return await mysql.createConnection({
@@ -18,7 +18,7 @@ const connection = async () => {
     database: process.env.DATABASE,
     multipleStatements: true
   });
-}
+};
 
 // movie一覧取得
 app.get("/movie", (req: express.Request, res: express.Response) => {
@@ -28,5 +28,5 @@ app.get("/movie", (req: express.Request, res: express.Response) => {
     return result;
   }).then(function(rows) {
     res.send(rows);
-  })
-})
+  });
+});
