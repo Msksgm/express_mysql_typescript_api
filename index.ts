@@ -12,7 +12,7 @@ app.listen(4000, () => {
 const connection = async () => {
   return await mysql.createConnection({
     host: process.env.HOST,
-    port: Number(process.env.PORT),
+    port: parseInt(process.env.PORT, 10),
     user: process.env.USER,
     password: process.env.PASSWORD,
     database: process.env.DATABASE,
