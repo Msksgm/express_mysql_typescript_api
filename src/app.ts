@@ -61,14 +61,13 @@ app.put("/movie", (req: express.Request, res: express.Response) => {
 
 // movie更新処理
 app.patch("/movie/:movieId", (req: express.Request, res: express.Response) => {
-  const movieId = parseInt(req.params.movieId, 10);
+  const movieId = req.params.movieId;
   const name = req.body.name;
-  console.log(movieId);
-  console.log(name);
   connection()
     .then((connection) => {
       const result = connection.query(
-        `UPDATE MOVIE SET NAME = "${name}" WHERE ID = ${movieId}`
+        "UPDATE MOVIE SET NAME = ? WHERE ID = ?",
+        [name, movieId]
       );
       connection.end();
       return result;
