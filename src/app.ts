@@ -61,3 +61,19 @@ app.patch("/movie/:movieId", (req: express.Request, res: express.Response) => {
       res.send(rows);
     });
 });
+
+// movie削除処理
+app.delete("/movie/:movieId", (req: express.Request, res: express.Response) => {
+  const movieId = req.params.movieId;
+  connection()
+    .then((connection) => {
+      const result = connection.query("DELETE FROM MOVIE WHERE ID = ?", [
+        movieId,
+      ]);
+      connection.end();
+      return result;
+    })
+    .then(function (rows) {
+      res.send(rows);
+    });
+});
