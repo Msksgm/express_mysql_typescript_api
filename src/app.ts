@@ -26,3 +26,19 @@ app.get("/movie", (req: express.Request, res: express.Response) => {
       res.send(rows);
     });
 });
+
+// movie追加処理
+app.put("/movie", (req: express.Request, res: express.Response) => {
+  const name = req.body.name;
+  connection()
+    .then((connection) => {
+      const result = connection.query(
+        `INSERT INTO MOVIE (NAME) VALUES ("${name}")`
+      );
+      connection.end();
+      return result;
+    })
+    .then(function (rows) {
+      res.send(rows);
+    });
+});
