@@ -27,14 +27,30 @@ app.get("/movie", (req: express.Request, res: express.Response) => {
     });
 });
 
+// movie単一取得
+app.get("/movie/:movieId", (req: express.Request, res: express.Response) => {
+  const movieId = req.params.movieId;
+  connection()
+    .then((connection) => {
+      const result = connection.query("SELECT * FROM MOVIE WHERE ID = ?", [
+        movieId,
+      ]);
+      connection.end();
+      return result;
+    })
+    .then(function (rows) {
+      res.send(rows);
+    });
+});
+
 // movie追加処理
 app.put("/movie", (req: express.Request, res: express.Response) => {
   const name = req.body.name;
   connection()
     .then((connection) => {
-      const result = connection.query(
-        `INSERT INTO MOVIE (NAME) VALUES ("${name}")`
-      );
+      const result = connection.query("INSERT INTO MOVIE (NAME) VALUES (?)", [
+        name,
+      ]);
       connection.end();
       return result;
     })
