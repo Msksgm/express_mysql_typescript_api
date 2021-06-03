@@ -6,8 +6,8 @@ const app: express.Express = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.listen(4000, () => {
-  console.log("Start on port 4000.");
+app.listen(config.port, () => {
+  console.log(`Start on port ${config.port}.`);
 });
 
 const connection = async () => {
