@@ -2,7 +2,7 @@ export default {
   /**
    * APIサーバーのPORT番号
    */
-  port: process.env.PORT,
+  port: parseInt(process.env.PORT, 10),
 
   /**
    * databaseの設定
