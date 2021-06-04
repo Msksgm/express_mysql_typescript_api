@@ -1,7 +1,8 @@
 # express_mysql_typescript_api
 
 express + mysql + typescirpt で簡易 API サーバー  
-CRUD ができる
+CRUD ができる  
+詳しくはこちらの[記事](https://msksgm.hatenablog.com/entry/2021/06/04/212510)を参照
 
 # Installation
 
